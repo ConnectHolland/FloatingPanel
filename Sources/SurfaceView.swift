@@ -264,7 +264,7 @@ public class SurfaceView: UIView {
     }
     
     public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if isHittable && backgroundColor != .clear && super.point(inside: point, with: event) {
+        if isHittable && super.backgroundColor != .clear && super.point(inside: point, with: event) {
             return true
         }
         
