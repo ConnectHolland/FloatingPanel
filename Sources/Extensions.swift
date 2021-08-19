@@ -120,6 +120,10 @@ extension UIView {
         }
         return ret
     }
+    
+    var isHittable: Bool {
+        return !isHidden && alpha >= 0.01 && isUserInteractionEnabled
+    }
 }
 
 extension UIView {

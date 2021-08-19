@@ -262,7 +262,24 @@ public class SurfaceView: UIView {
 
         shadowLayers = appearance.shadows.map { _ in CALayer() }
     }
+    
+    public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if isHittable && backgroundColor != .clear && super.point(inside: point, with: event) {
+            return true
+        }
+        
+        for subview in subviews {
+            if subview.isHittable {
+                let converted = convert(point, to: subview)
+                if subview.point(inside: converted, with: event) {
+                    return true
+                }
+            }
+        }
 
+        return false
+    }
+    
     public override func updateConstraints() {
         switch position {
         case .top:
